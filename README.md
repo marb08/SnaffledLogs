@@ -3,7 +3,7 @@ SnaffledLogs is a simple python script which using some **magic** allow to parse
 
 ## Install and Run
 ```bash
-git clone https://github.com/jacopomv/SnaffledLogs
+git clone https://github.com/marb08/SnaffledLogs.git
 cd SnaffledLogs/
 pip install -r requirements.txt
 python3 SnaffledLogs.py

@@ -32,7 +32,7 @@ output_file_name = args.output_file
 pattern = r"\](.+) \[(.+)\] {(.+)}<(.+)>\((.+?)\).+?(.*)"
 
 # Set the column headers
-headers = ['Timestamp', 'Entry Type', 'Triage Level', 'Rule Name', 'File Path', 'File Content']
+headers = ['Timestamp', 'Entry Type', 'Triage Level', 'Rule Name', 'File Path', 'File Content/File Type']
 for col_num, header in enumerate(headers, 1):
     col_letter = get_column_letter(col_num)
     sheet[f"{col_letter}1"] = header
@@ -48,7 +48,7 @@ else:
 
 # Process each log file
 for log_file_path in log_files:
-    with open(log_file_path, 'r') as file:
+    with open(log_file_path, 'r', encoding="utf8") as file:
         # Read the log file line by line and parse each line
         for line in file:
             line = line.strip()  # Remove leading/trailing whitespace

@@ -1,0 +1,11 @@
+# Logs and xlsx files
+*.log
+*.txt
+*.xlsx
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

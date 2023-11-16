@@ -16,24 +16,28 @@ python3 SnaffledLogs.py
  __) | | (_|  |   |  | (/_ (_| |_ (_) (_| _> 
                                        _|                        
 
+usage: SnaffledLogs.py [-h] (-l LOG_FILE | -d DIRECTORY) [-x FILE_EXTENSION] [-o OUTPUT_FILE]
+
 Parse Snaffler log file(s) and save data to XLSX.
-usage: SnaffledLogs.py [-h] (-l LOG_FILE | -a EXTENSION) [-o OUTPUT_FILE]
-
-
 
 optional arguments:
   -h, --help            show this help message and exit
   -l LOG_FILE, --log_file LOG_FILE
                         Path to the log file containing the Snaffler logs
-  -a EXTENSION, --extension EXTENSION
-                        Process all files with the specified extension in the current directory
+  -d DIRECTORY, --directory DIRECTORY
+                        Process all files containing the Snaffler logs with the specified extension in the current directory
+  -x FILE_EXTENSION, --file_extension FILE_EXTENSION
+                        File extension to filter files when using -a option
   -o OUTPUT_FILE, --output_file OUTPUT_FILE
                         Output file name
 ```
 ## Examples
 ```bash
-python3 SnaffledLogs.py -l snaffler_logs.log -o output.xlsx      # Process the logs contained in snaffle_logs.log file.
-python3 SnaffledLogs.py -a .log -o output.xlsx                   # Process all the files with .log extension in current directory.
+# Process the logs contained in snaffle_logs.log file
+python3 SnaffledLogs.py -l snaffler_logs.log -o output.xlsx
+
+# Process only the files with .log extension in the /home/user/snaffler/logs/ directory
+python3 SnaffledLogs.py -d /home/user/snaffler/logs/ -x log -o output.xlsx
 ```
 ## Contributing
 Pull requests are welcome.

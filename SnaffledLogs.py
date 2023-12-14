@@ -13,6 +13,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description='Parse Snaffler log file(s) and save data to XLSX.')
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('-l', '--log_file', help='Path to the log file containing the Snaffler logs')
+    group.add_argument('-j', '--json_file', help='Process the json file containing the Snaffled logs')
     group.add_argument('-d', '--directory', help='Process all files containing the Snaffler logs with the specified extension in the current directory')
     parser.add_argument('-x', '--file_extension', help='File extension to filter files when using -a option')
     parser.add_argument('-o', '--output_file', default='snaffler_logs', help='Output file name')
@@ -20,15 +21,14 @@ def parse_arguments():
     return parser.parse_args()
 
 def validate_arguments(args, program_name):
-    if not (args.log_file or args.directory):
-        parser.print_usage()
-        sys.exit(f"\n{program_name}: error: at least one of the arguments -l/--log_file or -a/--extension is required.")
+    if not (args.log_file or args.directory or args.json_file):
+        sys.exit(f"\n{program_name}: error: at least one of the arguments -l/--log_file, -j/--json_file or -d/--directory is required.")
 
     if args.directory and not args.file_extension:
         sys.exit(f"\n{program_name}: error: when using -d/--directory, you must provide also -x/--file_extension for file extension.")
 
 def set_headers(sheet):
-    headers = ['Timestamp', 'Entry Type', 'Triage Level', 'Rule Name', 'File Path', 'File Content/File Type']
+    headers = ['Timestamp', 'Entry Type', 'Triage Color Level', 'Rule Name', 'File Path', 'File Content/File Type']
     for col_num, header in enumerate(headers, 1):
         col_letter = get_column_letter(col_num)
         sheet[f"{col_letter}1"] = header
